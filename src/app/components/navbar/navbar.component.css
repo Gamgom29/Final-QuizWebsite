@@ -1,0 +1,9 @@
+.bg-main {
+    background-color: var(--main-color);
+}
+.nav-item a {
+    color: #fff;
+}
+.nav-item a:hover {
+    color: #aaa;
+}

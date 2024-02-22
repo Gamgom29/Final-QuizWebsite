@@ -1,0 +1,18 @@
+.form-container {
+    border: 1px solid #aaa;
+    border-radius: 10px;
+}
+.form-title {
+    top: -20px;
+    left: 25%;
+}
+.form-control::placeholder {
+    text-align: right;
+}
+.form-control {
+    text-align: right;
+}
+.form-control:focus{
+    box-shadow: none;
+    border-color: #999;
+}
