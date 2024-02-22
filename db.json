@@ -1,6 +1,13 @@
 {
     "students":[],
-    "doctor":[],
+    "doctor":[
+        {
+            "name":"admin",
+            "email":"admin@admin.com",
+            "password":"1234",
+            "role":"doctor"
+        }
+    ],
     "login":[]
     
 }
