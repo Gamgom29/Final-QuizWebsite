@@ -1,1 +1,39 @@
-<p>login works!</p>
+<section class="h-75  d-flex align-items-center justify-content-center">
+    <div class="form-container p-5 w-75 position-relative">
+        <h1 class="fs-4 bg-main w-50 text-center text-white py-2 rounded-4 position-absolute form-title">تسجيل دخول</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="handleForm()">
+            <div class="row ">
+                <div class="col-sm-12 text-end mb-3">
+                    <mat-radio-group (change)="getRole($event)" formControlName="type">
+                        <mat-radio-button class="m-5" color="primary" value="students">طالب</mat-radio-button>
+                        <mat-radio-button color="primary" value="doctor">دكتور</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>الايميل</mat-label>
+                        <input type="email" matInput placeholder="pat@example.com" formControlName="email" required>
+                        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">enter a valid email</mat-error>
+                        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">email is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label> كلمه السر</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" type="password"  formControlName="password" required>
+                        <mat-error *ngIf="loginForm.get('password')?.hasError('password')">invalid password</mat-error>
+                        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">password is required</mat-error>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <button [disabled]="loginForm.invalid" mat-raised-button color="primary">تسجيل</button>
+                <a routerLink="/register" mat-button color="primary" class="fs-6 text-decoration-none"> انشاء حساب جديد؟</a>
+            </div>
+        </form>
+    </div>
+</section>
+<mat-divider></mat-divider>

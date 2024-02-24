@@ -9,3 +9,6 @@ body { margin: 0;  font-family: "Almarai", sans-serif; }
 .bg-main {
     background-color: var(--main-color);
 }
+.active-link {
+    background-color: #361372;
+}

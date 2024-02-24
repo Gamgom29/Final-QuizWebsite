@@ -1,6 +1,7 @@
 <nav
     class="navbar navbar-expand-sm navbar-dark bg-main p-3">
     <div class="container">
+        <a class="navbar-brand fs-1 fw-medium" href="#">فاينال  <i class="fa-solid fa-graduation-cap"></i></a>
         <button
             class="navbar-toggler d-lg-none"
             type="button"
@@ -14,26 +15,29 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                <li class="nav-item me-2">
-                    <a class="nav-link fs-5" routerLink="register">تسجيل</a>
+                <li *ngIf="user?.role == 'doctor'" class="nav-item me-2">
+                    <a class="nav-link fs-5 rounded-3" routerLinkActive="active-link" routerLink="newexam">اختبار جديد</a>
                 </li>
-                <li class="nav-item me-2">
-                    <a class="nav-link fs-5" routerLink="login">دخول</a>
+                <li *ngIf="user !== null" class="nav-item me-2 ">
+                    <a class="nav-link fs-5 rounded-3" routerLinkActive="active-link" routerLink="subjects">المواد</a>
                 </li>
-                <li class="nav-item me-2">
-                    <a class="nav-link fs-5" routerLink="">خروج</a>
+                <li *ngIf="user?.role == 'doctor'" class="nav-item me-2">
+                    <a class="nav-link fs-5 rounded-3" routerLinkActive="active-link" routerLink="students">الطلاب</a>
                 </li>
-                <li class="nav-item me-2">
-                    <a class="nav-link fs-5"routerLink="">المواد</a>
+                <li *ngIf="user == null" class="nav-item me-2 "> 
+                    <a class="nav-link fs-5 rounded-3" routerLinkActive="active-link" routerLink="register">تسجيل</a>
                 </li>
-                <li class="nav-item me-2">
-                    <a class="nav-link fs-5"routerLink="">الطلاب</a>
+                <li *ngIf="user == null" class="nav-item me-2">
+                    <a class="nav-link fs-5 rounded-3" routerLinkActive="active-link" routerLink="login">دخول</a>
                 </li>
-                <li class="nav-item me-2">
-                    <a class="nav-link fs-5"routerLink="">اختبار جديد</a>
+                <li *ngIf="user !== null" (click)="logout()" class="nav-item me-2">
+                    <a class="nav-link fs-5"  routerLink="login">خروج</a>
                 </li>
+                <li *ngIf="user !== null" class="nav-item me-2 rounded-5 active-link">
+                    <a class="nav-link fs-5" >{{user?.userName}}</a>
+                </li>
+                
             </ul>
         </div>
-        <a class="navbar-brand fs-1 fw-medium" href="#">فاينال  <i class="fa-solid fa-graduation-cap"></i></a>
     </div>
 </nav>

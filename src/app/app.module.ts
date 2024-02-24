@@ -12,7 +12,10 @@ import { StudentsComponent } from './components/students/students.component';
 import { NewexamComponent } from './components/newexam/newexam.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import { MaterialModule } from './material/material.module';
-
+import {HttpClientModule} from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +32,11 @@ import { MaterialModule } from './material/material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
-    MaterialModule
+    HttpClientModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    RxReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
