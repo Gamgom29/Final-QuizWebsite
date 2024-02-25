@@ -5,6 +5,18 @@
       "userName": "abdelrahman",
       "email": "abdogamgom2015@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "2",
+      "userName": "abdelrahman",
+      "email": "gamgom@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "3",
+      "userName": "abdooo",
+      "email": "test@test.com",
+      "password": "1234"
     }
   ],
   "doctor": [
@@ -25,11 +37,18 @@
   ],
   "subjects": [
     {
+      "id": "1",
+      "name": "math",
       "questions": [
-        {}
-      ],
-      "name": "",
-      "id": ""
+        {
+          "question": "2+2",
+          "answer1": "1",
+          "answer2": "2",
+          "answer3": "4",
+          "answer4": "3",
+          "correctAns": "4"
+        }
+      ]
     }
   ]
 }
