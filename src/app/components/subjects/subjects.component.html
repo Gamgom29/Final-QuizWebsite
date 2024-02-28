@@ -1,1 +1,20 @@
-<p>subjects works!</p>
+<section *ngIf="subjects.length > 0 else block" class="subjectBox p-3">
+    <div class="row">
+        <div *ngFor="let subject of subjects ; index as i " class="col-md-3 col-sm-12">
+            <div class="namesubject">
+                <div>{{subject.name}}</div>
+            </div>
+            <div class="subBtn">
+            <button mat-raised-button color="warn" *ngIf="user?.role == 'doctor'" (click)="deleteSub(subject.id , i)" class="mx-1">حذف</button>
+            <button mat-raised-button [routerLink]="['/exam' , subject.id]" color="primary" *ngIf="user?.role == 'doctor'"  class="mx-1">عرض</button>
+            <button mat-raised-button [routerLink]="['/exam' , subject.id]" *ngIf="user?.role == 'students'" class="mx-1 btn btn-success">ابدأ الاختبار</button>
+            </div>
+        </div>
+    </div>
+</section>
+<ng-template #block>
+    <div class="text-center mt-5">
+        
+        <h2 class="h1 fw-bold">لا يوجد مواد</h2>
+    </div>
+</ng-template>

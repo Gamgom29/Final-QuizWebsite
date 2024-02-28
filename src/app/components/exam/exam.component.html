@@ -1,1 +1,41 @@
-<p>exam works!</p>
+<div class="examBox">
+    <div class="examhead text-center"><h2>{{subject?.name}}</h2></div>
+    <div *ngIf="!finished">
+        <h3 class="fs-3 text-start">{{seconds}} : {{minutes}}</h3>
+        <div *ngFor="let question of subject?.questions ; index as i" class="quizBox">
+            <strong ><span class="text-danger">سؤال {{i+1}}</span> : {{question?.question}}</strong>
+            <div class="row mt-3" >
+                <div class="col-md-6 col-sm-12">
+                    <mat-radio-button *ngIf="this.user?.role == 'students' " (change)="getAnswer($event)" name="{{i}}" value="{{question.answer1}}" color="warn"></mat-radio-button>
+                    <label>A : {{question?.answer1}}</label>
+                </div>
+    
+                <div class="col-md-6 col-sm-12">
+                    <mat-radio-button *ngIf="this.user?.role == 'students' " (change)="getAnswer($event)" name="{{i}}" value="{{question.answer2}}"  color="warn"></mat-radio-button>
+                    <label>B : {{question?.answer2}}</label>
+                </div>
+    
+                <div class="col-md-6 col-sm-12">
+                    <mat-radio-button *ngIf="this.user?.role == 'students' " (change)="getAnswer($event)" name="{{i}}" value="{{question.answer3}}"  color="warn"></mat-radio-button>
+                    <label>C : {{question?.answer3}}</label>
+                </div>
+    
+                <div class="col-md-6 col-sm-12">
+                    <mat-radio-button *ngIf="this.user?.role == 'students' "  (change)="getAnswer($event)" name="{{i}}" value="{{question.answer4}}" color="warn"></mat-radio-button>
+                    <label>D : {{question?.answer4}}</label>
+                </div>
+            </div>
+            <div class="text-right mt-2">
+                <button *ngIf="user?.role == 'doctor' " (click)="delete(i)" mat-raised-button  class="btn btn-danger" >حذف</button>
+            </div>
+            <hr>
+        </div>
+        <div class="text-center" *ngIf="user?.role == 'students' ">
+            <button (click)="getResult()" class="btn btn-success px-5 fs-5"> النتيجة</button>
+        </div>
+    </div>
+    <div *ngIf="finished">
+        <h2 class="fs-1 mb-3 text-center font-bolder"> النتيجه </h2>
+        <h2 class="fs-2 mt-1 text-center"> {{subject?.questions.length}} / {{total}}</h2>
+    </div>
+</div>

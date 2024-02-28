@@ -1,6 +1,6 @@
 import { core } from '@angular/compiler';
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
 
@@ -11,7 +11,10 @@ import { DoctorService } from 'src/app/shared/services/doctor.service';
 })
 export class NewexamComponent {
   constructor(private _FormBuilder:FormBuilder , private _ToastrService:ToastrService , private _DoctorService:DoctorService){}
+  time:FormControl = new FormControl(0);
   name:FormControl = new FormControl("");
+  id!:string;
+  quizTime:number = 0;
   correctNum = '';
   questions:any[] = [];
   startAdd:boolean = false;
@@ -35,10 +38,14 @@ export class NewexamComponent {
     if(this.name.value == ''){
       this._ToastrService.error('برجاء اختيار اسم الماده');
     }
+    else if (this.time.value == 0 ){
+      this._ToastrService.error('برجاء اختيار وقت الامتحان');
+    }
     else {
       this.startAdd = true;
       this.stepperIndx = 1;
       this.subName = this.name.value;
+      this.quizTime = this.time.value;
     }
     
   }
@@ -47,6 +54,7 @@ export class NewexamComponent {
       const model = this.questionForm.value ;
       this.questions.push(model);
       this.questionForm.reset();
+      this.correctNum = '';
     }
     else {
       this._ToastrService.error("برجاء اختيار الاجابه الصحيحه");
@@ -72,12 +80,14 @@ export class NewexamComponent {
     else {
       const model = {
         name:this.subName , 
-        questions:this.questions
+        questions:this.questions,
+        quizTime:this.quizTime
       }
       this._DoctorService.createExam(model).subscribe({
         next:res=>{
           console.log(res);
           this.preview = true;
+          this.id=res.id
         },
         error:err=>{
           console.log(err);
@@ -86,4 +96,20 @@ export class NewexamComponent {
     }
     }
     
+    delete(indx:number):void{
+      this.questions.splice(indx , 1);
+      const model = {
+        name:this.subName,
+        questions:this.questions,
+      }
+      this._DoctorService.updateExam(model ,this.id).subscribe({
+        next:res=>{
+          console.log(res);
+          this._ToastrService.success('تم حذف السؤال بنجاح');
+        },
+        error:err=>{
+          console.log(err);
+        }
+      })
+    }
 }

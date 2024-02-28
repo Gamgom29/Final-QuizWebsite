@@ -37,18 +37,95 @@
   ],
   "subjects": [
     {
-      "id": "1",
-      "name": "math",
+      "id": "a9e1",
+      "name": "اللغه العربيه",
+      "questions": [
+        {
+          "question": "1",
+          "answer1": "1",
+          "answer2": "1",
+          "answer3": "1",
+          "answer4": "1",
+          "correctAns": "1"
+        }
+      ],
+      "quizTime": 15
+    },
+    {
+      "name": "الرياضيات",
       "questions": [
         {
           "question": "2+2",
           "answer1": "1",
-          "answer2": "2",
-          "answer3": "4",
-          "answer4": "3",
+          "answer2": "3",
+          "answer3": "2",
+          "answer4": "4",
           "correctAns": "4"
         }
-      ]
+      ],
+      "id": "01ea",
+      "quizTime": 15
+    },
+    {
+      "id": "7db9",
+      "name": "science",
+      "questions": [
+        {
+          "question": "1+1",
+          "answer1": "1",
+          "answer2": "3",
+          "answer3": "2",
+          "answer4": "4",
+          "correctAns": "2"
+        }
+      ],
+      "quizTime": 15
+    },
+    {
+      "id": "2cba",
+      "name": "math2",
+      "questions": [
+        {
+          "question": "3+3",
+          "answer1": "4",
+          "answer2": "6",
+          "answer3": "5",
+          "answer4": "7",
+          "correctAns": "6"
+        }
+      ],
+      "quizTime": 15
+    },
+    {
+      "id": "d360",
+      "name": "math3",
+      "questions": [
+        {
+          "question": "1+1",
+          "answer1": "1",
+          "answer2": "3",
+          "answer3": "2",
+          "answer4": "4",
+          "correctAns": "2"
+        },
+        {
+          "question": "2+2",
+          "answer1": "1",
+          "answer2": "5",
+          "answer3": "3",
+          "answer4": "4",
+          "correctAns": "4"
+        },
+        {
+          "question": "10+10",
+          "answer1": "1",
+          "answer2": "20",
+          "answer3": "13",
+          "answer4": "15",
+          "correctAns": "20"
+        }
+      ],
+      "quizTime": 15
     }
   ]
 }

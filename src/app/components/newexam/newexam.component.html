@@ -7,6 +7,13 @@
                     <mat-label>اسم المادة</mat-label>
                     <input matInput type="text" [formControl]="name" >
                 </mat-form-field>
+            </div>
+            <div class="AddSubject">
+                <div>وقت الامتحان : </div>
+                <mat-form-field appearance="fill" color="warn">
+                    <mat-label>وقت الامتحان</mat-label>
+                    <input matInput type="number" [formControl]="time" >
+                </mat-form-field>
                 <button color="warn" class="me-3" (click)="start()" mat-raised-button matStepperNext>ابدأ</button>
             </div>
         </mat-step>
@@ -66,7 +73,7 @@
             <div class="examBox">
                 <div class="examhead text-center"><h2>اختبار {{subName}}</h2></div>
                 <div *ngFor="let question of questions ; index as i" class="quizBox">
-                    <strong><span class="text-danger">سؤال {{i+1}}</span></strong>
+                    <strong><span class="text-danger">سؤال {{i+1}} <span class="text-black"> : {{question.question}}</span></span></strong>
                     <div  class="row" dir="rtl">
                         <div class="col-sm-12">
                         {{question.answer1}}
@@ -85,8 +92,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <button mat-raised-button class="btn btn-warning ms-3" >تعديل</button>
-                        <button mat-raised-button  class="btn btn-danger" >حذف</button>
+                        <button (click)="delete(i)" mat-raised-button  class="btn btn-danger" >حذف</button>
                     </div>
                     <hr>
                 </div>

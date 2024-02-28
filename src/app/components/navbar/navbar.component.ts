@@ -12,10 +12,9 @@ export class NavbarComponent implements OnInit{
   ngOnInit(): void {
       this._AuthService.user.subscribe({
         next:data=>{
-          if(data.role){
+          if(data?.role){
             this.user = data;
           }
-          console.log(this.user);
         }
       })
   }
@@ -23,7 +22,7 @@ export class NavbarComponent implements OnInit{
     const model={}
     this._AuthService.login(model).subscribe({
       next:res=>{
-        this.user=null;
+        this.user = null;
         this._AuthService.user.next(res);
       }
     })
