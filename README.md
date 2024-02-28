@@ -1,7 +1,7 @@
 # description
-<h1>
+<p>
  Final is a Quiz Web App That help Doctors to make simple quizzes And Get Access To Students Degrees
-</h1>
+</p>
 
 # clone repository
 ```
