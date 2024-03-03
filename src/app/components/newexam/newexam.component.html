@@ -55,14 +55,14 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    <div class="questBtn w-75 mx-auto d-flex justify-content-between">
-                        <div>
-                            <button  mat-raised-button class="btn btn-success ms-3" matStepperNext (click)="createExam()" [disabled] = "questions.length == 0" >{{preview ? 'عرض':'انتهاء'}}</button>
-                            <button mat-raised-button color="warn" matStepperPrevious (click)="deleteForm()" >الغاء</button>
+                    <div class="w-75 mx-auto d-flex justify-content-between">
+                        <div >
+                            <button  mat-raised-button class="btn btn-success me-2 " matStepperNext (click)="createExam()" [disabled] = "questions.length == 0" >{{preview ? 'عرض':'انتهاء'}}</button>
+                            <button mat-raised-button class="me-2 " color="warn" matStepperPrevious (click)="deleteForm()" >الغاء</button>
                         </div>
                         <div>
-                            <button mat-raised-button class="ms-3" (click)="claerForm()" color="accent">حذف </button>
-                            <button mat-raised-button color="primary" (click)="submit()" [disabled]="questionForm.invalid" >حفظ</button>
+                            <button mat-raised-button class="me-2 " (click)="claerForm()" color="accent">حذف </button>
+                            <button mat-raised-button class="me-2" color="primary" (click)="submit()" [disabled]="questionForm.invalid" >حفظ</button>
                         </div>
                         
                     </div>
