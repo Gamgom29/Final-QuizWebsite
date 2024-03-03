@@ -9,21 +9,21 @@ export class AuthService {
   user:BehaviorSubject<any> = new BehaviorSubject(null);
   constructor(private _HttpClient:HttpClient) { }
   createUser(userData:object):Observable<any>{
-    return this._HttpClient.post(`https://my-json-server.typicode.com/Gamgom29/Final-QuizWebsite/students` , userData);
+    return this._HttpClient.post(`https://final-db-xh9h.onrender.com/students` , userData);
   }
   getUsers(type:string):Observable<any>{
-    return this._HttpClient.get(`https://my-json-server.typicode.com/Gamgom29/Final-QuizWebsite/${type}`);
+    return this._HttpClient.get(`https://final-db-xh9h.onrender.com/${type}`);
   }
   login(userData:object):Observable<any>{
-    return this._HttpClient.put(`https://my-json-server.typicode.com/Gamgom29/Final-QuizWebsite/login/1` , userData);
+    return this._HttpClient.put(`https://final-db-xh9h.onrender.com/login/1` , userData);
   }
   getUser(id:string):Observable<any>{
-    return this._HttpClient.get(`https://my-json-server.typicode.com/Gamgom29/Final-QuizWebsite/students/${id}`);
+    return this._HttpClient.get(`https://final-db-xh9h.onrender.com/students/${id}`);
   }
   updateUser(id:string , model:object):Observable<any>{
-    return this._HttpClient.put(`https://my-json-server.typicode.com/Gamgom29/Final-QuizWebsite/students/${id}` , model);
+    return this._HttpClient.put(`https://final-db-xh9h.onrender.com/students/${id}` , model);
   }
   getRole():Observable<any>{
-    return this._HttpClient.get(`https://my-json-server.typicode.com/Gamgom29/Final-QuizWebsite/login/1`);
+    return this._HttpClient.get(`https://final-db-xh9h.onrender.com/login/1`);
   }
 }
