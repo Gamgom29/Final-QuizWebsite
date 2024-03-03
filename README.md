@@ -22,3 +22,7 @@ ng s -o
 ```
 # live Demo 
 https://gamgom29.github.io/Final-QuizWebsite/
+# to signin as a Doctor
+email : admin@admin.com
+<br>
+password : 123
