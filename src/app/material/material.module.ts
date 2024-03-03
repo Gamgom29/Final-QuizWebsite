@@ -7,6 +7,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatTableModule} from '@angular/material/table';
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
 @NgModule({
   declarations: [],
   imports: [
@@ -17,7 +24,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule
   ],
   exports:[
     MatIconModule,
@@ -26,7 +34,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule
   ]
 })
 export class MaterialModule { }

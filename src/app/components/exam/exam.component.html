@@ -1,7 +1,7 @@
 <div class="examBox">
     <div class="examhead text-center"><h2>{{subject?.name}}</h2></div>
     <div *ngIf="!finished">
-        <h3 class="fs-3 text-start">{{seconds}} : {{minutes}}</h3>
+        <h3 *ngIf="user?.role=='students'" class="fs-3 text-start">{{seconds}} : {{minutes}}</h3>
         <div *ngFor="let question of subject?.questions ; index as i" class="quizBox">
             <strong ><span class="text-danger">سؤال {{i+1}}</span> : {{question?.question}}</strong>
             <div class="row mt-3" >

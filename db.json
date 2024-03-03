@@ -1,10 +1,17 @@
 {
   "students": [
     {
-      "id": "1",
       "userName": "abdelrahman",
       "email": "abdogamgom2015@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "subjects": [
+        {
+          "name": "الرياضيات",
+          "id": "01ea",
+          "degree": 0
+        }
+      ],
+      "id": "1"
     },
     {
       "id": "2",
@@ -13,10 +20,32 @@
       "password": "123"
     },
     {
-      "id": "3",
-      "userName": "abdooo",
+      "userName": "test",
       "email": "test@test.com",
-      "password": "1234"
+      "password": "1234",
+      "subjects": [
+        {
+          "name": "الرياضيات",
+          "id": "01ea",
+          "degree": 1
+        },
+        {
+          "name": "اللغه العربيه",
+          "id": "a9e1",
+          "degree": 1
+        },
+        {
+          "name": "science",
+          "id": "7db9",
+          "degree": 0
+        },
+        {
+          "name": "math3",
+          "id": "d360",
+          "degree": 0
+        }
+      ],
+      "id": "3"
     }
   ],
   "doctor": [
@@ -24,8 +53,7 @@
       "userName": "admin",
       "email": "admin@admin.com",
       "password": "123",
-      "role": "doctor",
-      "id": "1"
+      "role": "doctor"
     }
   ],
   "login": [
@@ -36,66 +64,6 @@
     }
   ],
   "subjects": [
-    {
-      "id": "a9e1",
-      "name": "اللغه العربيه",
-      "questions": [
-        {
-          "question": "1",
-          "answer1": "1",
-          "answer2": "1",
-          "answer3": "1",
-          "answer4": "1",
-          "correctAns": "1"
-        }
-      ],
-      "quizTime": 15
-    },
-    {
-      "name": "الرياضيات",
-      "questions": [
-        {
-          "question": "2+2",
-          "answer1": "1",
-          "answer2": "3",
-          "answer3": "2",
-          "answer4": "4",
-          "correctAns": "4"
-        }
-      ],
-      "id": "01ea",
-      "quizTime": 15
-    },
-    {
-      "id": "7db9",
-      "name": "science",
-      "questions": [
-        {
-          "question": "1+1",
-          "answer1": "1",
-          "answer2": "3",
-          "answer3": "2",
-          "answer4": "4",
-          "correctAns": "2"
-        }
-      ],
-      "quizTime": 15
-    },
-    {
-      "id": "2cba",
-      "name": "math2",
-      "questions": [
-        {
-          "question": "3+3",
-          "answer1": "4",
-          "answer2": "6",
-          "answer3": "5",
-          "answer4": "7",
-          "correctAns": "6"
-        }
-      ],
-      "quizTime": 15
-    },
     {
       "id": "d360",
       "name": "math3",

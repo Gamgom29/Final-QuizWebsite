@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { password } from '@rxweb/reactive-form-validators';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
@@ -11,16 +12,19 @@ import { DoctorService } from 'src/app/shared/services/doctor.service';
 })
 export class ExamComponent implements OnInit {
   id:string = '';
-  constructor(private _ActivatedRoute:ActivatedRoute, private _DoctorService:DoctorService , private _ToastrService:ToastrService , private _AuthService:AuthService){}
+  constructor(private _ActivatedRoute:ActivatedRoute, private _DoctorService:DoctorService ,
+  private _ToastrService:ToastrService , private _AuthService:AuthService){}
   subject!:any;
   user!:any;
   finished:boolean = false;
-  total:number = 0 ;
+  total:any = 0 ;
   quizTime!:number;
   minutes!:number;
   seconds!:number;
   quizT:any;
+  studentInfo:any;
   myCountDown:any;
+  userSubjects:any[] = [];
   ngOnInit(): void {
       this._ActivatedRoute.paramMap.subscribe({
         next:data=>{
@@ -29,25 +33,35 @@ export class ExamComponent implements OnInit {
       });
       this._DoctorService.getExam(this.id).subscribe({
         next:response=>{
-          console.log(response);
           this.subject = response;
-          this.quizTime = response.quizTime * 60;
-          this.timer();
-          this.stratQuiz();
+          console.log(this.subject);
+          this._AuthService.getRole().subscribe({
+            next:res=>{
+              this.user=res;
+              this._AuthService.getUser(this.user.userId).subscribe({
+                next:response=>{
+                  this.studentInfo = response;
+                  this.userSubjects =  response.subjects ? response.subjects  : [] ;
+                  this.checkValidExam();
+                  console.log(this.studentInfo);
+                }
+              });
+              if(this.user.role == 'students'){
+                this.quizTime = response.quizTime * 60;
+                this.timer();
+                this.stratQuiz();
+              }
+            },
+            error:err=>{
+              console.log(err);
+            }
+          });
+          
         },
         error:err=>{
           console.log(err);
         }
       });
-      this._AuthService.getRole().subscribe({
-        next:res=>{
-          this.user=res;
-        },
-        error:err=>{
-          console.log(err);
-        }
-      });
-
   }
   stratQuiz():void{
       this.quizT = setTimeout(() => {
@@ -59,7 +73,7 @@ export class ExamComponent implements OnInit {
       this.countDown()
     } , 1000);
   }
-  countDown(){
+    countDown(){
     this.minutes = Math.floor(this.quizTime / 60);
     this.seconds = this.quizTime % 60 ;
     this.quizTime--;
@@ -92,9 +106,42 @@ export class ExamComponent implements OnInit {
     clearTimeout(this.quizT);
     for(let x in this.subject.questions){
       if(this.subject.questions[x].correctAns == this.subject.questions[x].studentAns){
-        this.total ++ ;
+        this.total++ ;
       }
     }
     console.log(this.total);
+    let subindx = this.userSubjects.findIndex(item=> item.name == this.subject.name);
+    if(subindx == -1){
+      this.userSubjects.push({
+        name:this.subject.name,
+        id:this.id,
+        degree:this.total
+      })
+    }
+    const model = {
+      userName:this.studentInfo.userName,
+      email:this.studentInfo.email,
+      password:this.studentInfo.password,
+      subjects: this.userSubjects
+    };
+    this._AuthService.updateUser(this.studentInfo.id , model).subscribe({
+      next:res=>{
+        console.log(res);
+      },
+      error:err=>{
+        console.log(err);
+        
+      }
+    })
+  }
+  checkValidExam(){
+    for(let i in this.userSubjects){
+      if(this.userSubjects[i].id == this.id){
+        clearInterval(this.myCountDown);
+        clearTimeout(this.quizT);
+        this.total = this.userSubjects[i].degree;
+        this.finished = true;
+      }
+    }
   }
 }

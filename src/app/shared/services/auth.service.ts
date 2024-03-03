@@ -17,6 +17,12 @@ export class AuthService {
   login(userData:object):Observable<any>{
     return this._HttpClient.put(`http://localhost:3000/login/1` , userData);
   }
+  getUser(id:string):Observable<any>{
+    return this._HttpClient.get(`http://localhost:3000/students/${id}`);
+  }
+  updateUser(id:string , model:object):Observable<any>{
+    return this._HttpClient.put(`http://localhost:3000/students/${id}` , model);
+  }
   getRole():Observable<any>{
     return this._HttpClient.get(`http://localhost:3000/login/1`);
   }
